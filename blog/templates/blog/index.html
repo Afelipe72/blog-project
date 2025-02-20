@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+<!-- for the css files -->
+{% load static %}
+
+    {% block css_files %}
+        <link rel="stylesheet" href="{% static "blog/index.css" %}">
+     <!-- <link rel="stylesheet" href="{% static "challenges/includes/header.css" %}"> -->
+    {% endblock %}
+
+
+    {% block page_title %}
+        My site
+    {% endblock %}
+
+    {% block content %}
+     {% comment %} {% include "blog/includes/header.html" %} {% endcomment %}
+
+     
+     <section id="welcome">
+        <header>
+            <img src ="{% static "blog/images/cat.jpeg"%}" alt=" Author of this blog " />
+            <h2> Blog</h2>
+        </header>
+        <p> Hey I like programming! </p>
+    </section>
+
+    <section id = "latest-posts">
+        <h2> My latest thoughts </h2>
+        <ul>
+            {% for post in posts %}
+                {% include "blog/includes/post.html" %}
+            {% endfor %}
+        </ul>
+     </section>
+     
+     <section id="about">
+        <h2> What I do </h2>
+        <p> Software engineering </p>
+        <p> idk </p>
+        <p> I like cats </p>
+
+     </section>
+ 
+    {% endblock %}

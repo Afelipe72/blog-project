@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{%load  static  %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "blog/post-detail.css" %}" />
+{% endblock %}
+
+{% block content %}
+    <section id="summary"> 
+        <h2> {{ post.title }} </h2>
+        <div>
+            {% for tag in tags %}
+                <span class="tag"> {{ tag.caption }} </span>
+            {% endfor %}
+        <article>
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+            {% comment %} mail to is standart HTML {% endcomment %}
+            <address> By <a href="mailto:{{  post.author.mail_address }}"> {{ post.author }} </a> </address>
+        <div>
+            Last updated on <time> {{ post.date|date:"d M Y"  }} </time>
+        </div>
+        </article>
+        
+    {% comment %} read later button {% endcomment %}
+    <form action = "{% url 'read-later' %}" method="post" >
+        {% csrf_token %}
+        <div id="read-later">
+            <input type="hidden" value={{post.id}} name="post_id">
+            <button> 
+            {% if saved_for_later %}
+                Remove from "Read later list"
+            {% else %}
+                Read later
+            {% endif %}
+            </button>
+        </div>
+    </form>
+
+    </section>
+
+
+
+
+
+    <main>
+        <p>
+            {{ post.content|linebreaks  }}
+        </p>
+    </main>
+   
+
+{% comment %} comments {% endcomment %}
+<section id= "comments">
+    <div>
+        <h2 class="mb-3">Comments</h2>
+        <ul>
+            {% for comment in comments %}
+                <h2> Posted by: {{ comment.user_name }} </h2>
+                <p> {{ comment.text|linebreaks }} </p>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+ {% comment %} comment form  {% endcomment %}
+<section id="comment-form" class="container mt-4">
+    <div class="card p-4 shadow">
+        <h2 class="mb-3">Post a comment!</h2>
+        {% comment %} url is  {% endcomment %}
+        {% comment %}  should be sent to posts/<slug> {% endcomment %}
+        <form action = "{% url 'post-detail-page' slug=post.slug %}" method="post" >
+            {% csrf_token %}
+            {% for form_field in comment_form %}
+            <div class="mb-3">
+                {{ form_field.label_tag }}
+                {{ form_field }}
+                {{ form_field.errors }}
+            </div>
+            {% endfor %}
+            <button class="btn btn-primary">Save comment</button>
+        </form>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

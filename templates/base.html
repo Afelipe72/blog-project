@@ -1,0 +1,28 @@
+<!-- loads the static css file for the entire webpage -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Bootstrap CSS CDN link -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>{% block page_title %} My site {% endblock %}</title>
+    <!-- calls the css file for the global static folder -->
+    <link rel="stylesheet" href="{% static "app.css" %}">
+    {% block css_files %} {% endblock %}
+</head>
+<body>
+    {% comment %} instead of including it as an html snippet, we can include it directly in the base {% endcomment %}
+    <header id="main-navigation">
+        {% comment %} starting-page is the url name in the urls "blog" for the starting page {% endcomment %}
+        <h1> <a href="{% url "starting_page"%}"> Blog </a> </h1>
+        <nav>
+            <a href="{% url "posts-page"%}"> All posts </a>
+            <a href="{% url "read-later"%}"> Stored Posts </a>
+        </nav>
+     </header>
+    {%block content%} {% endblock %}
+</body>
+</html>
