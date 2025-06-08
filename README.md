@@ -17,16 +17,16 @@ The following **optional** features are implemented:
       
 ## Images 
 
-Landing page
+Landing page </br>
 <img src="https://github.com/user-attachments/assets/7cfacdea-cf17-4535-9cbb-5361219f31a6" alt="landing page" align="center" width="150" height="auto" />
 
-Post detail
+Post detail </br>
 <img src="https://github.com/user-attachments/assets/ae220d75-efd5-42cd-a93d-994d3bb17710" alt="Post detail" align="center" width="150" height="auto" />
 
-All posts
+All posts </br>
 <img src="https://github.com/user-attachments/assets/3cf42c90-e28b-463a-9234-523dc0fad082" alt="All posts" align="center" width="150" height="auto" />
 
-Stored posts
+Stored posts </br>
 <img src="https://github.com/user-attachments/assets/62a969bc-d8a6-4483-9510-abab240954eb" alt="Stored posts" align="center" width="150" height="auto" />
 
 
